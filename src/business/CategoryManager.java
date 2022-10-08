@@ -1,5 +1,7 @@
 package business;
 
+import dataAccess.ICategoryDao;
+import dataAccess.hibernate.HibernateCategoryDao;
 import entities.Category;
 import logger.DatabaseLogger;
 import logger.EmailLogger;
@@ -9,15 +11,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryManager {
-    private static ILogger[] loggers = {new DatabaseLogger(), new EmailLogger()};
-    private static List<Category> _categories = new ArrayList<>();
+    private final ICategoryDao categoryDao = new HibernateCategoryDao();
+    private static final ILogger[] loggers = {new DatabaseLogger(), new EmailLogger()};
+    private static final List<Category> _categories = new ArrayList<>();
 
-    public static void createCategory(Category newCategory) throws Exception {
-        Category[] categories = Category.objects.getAll();
+    public void save(Category entity) throws Exception {
+        Category[] categories = this.categoryDao.getAll();
 
         for (Category category : CategoryManager._categories) { // Simüle etmek için categories yerine _categories
             // kullanıldı.
-            if (newCategory.getName().toLowerCase().equals(category.getName().toLowerCase())) {
+            if (entity.getName().toLowerCase().equals(category.getName().toLowerCase())) {
                 for (ILogger logger : CategoryManager.loggers) {
                     logger.log();
                 }
@@ -25,8 +28,8 @@ public class CategoryManager {
             }
         }
 
-        CategoryManager.addToCategories(newCategory);
-        Category.objects.save(newCategory);
+        CategoryManager.addToCategories(entity);
+        this.categoryDao.save(entity);
         for (ILogger logger : CategoryManager.loggers) {
             logger.log();
         }

@@ -1,7 +1,6 @@
 package entities;
 
 import business.TeacherManager;
-import dataAccess.ITeacherDao;
 
 public class Teacher {
     private int id;
@@ -9,11 +8,7 @@ public class Teacher {
     private String lastName;
     private String description;
     private String avatar;
-    public static TeacherManager objects;
-
-    public Teacher(TeacherManager objects) {
-        Teacher.objects = objects;
-    }
+    public static TeacherManager objects = new TeacherManager();
 
     public int getId() {
         return this.id;

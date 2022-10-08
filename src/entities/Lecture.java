@@ -1,6 +1,6 @@
 package entities;
 
-import dataAccess.ILectureDao;
+import business.LectureManager;
 
 public class Lecture {
     private int id;
@@ -9,11 +9,8 @@ public class Lecture {
     private double price;
     private Category category;
 
-    public static ILectureDao objects;
+    public static LectureManager objects = new LectureManager();
 
-    public Lecture(ILectureDao objects) {
-        Lecture.objects = objects;
-    }
 
     public int getId() {
         return id;

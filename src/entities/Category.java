@@ -1,16 +1,13 @@
 package entities;
 
 
-import dataAccess.ICategoryDao;
+import business.CategoryManager;
 
 public class Category {
     private int id;
     private String name;
-    public static ICategoryDao objects;
+    public static CategoryManager objects = new CategoryManager();
 
-    public Category(ICategoryDao objects) {
-        Category.objects = objects;
-    }
 
     public int getId() {
         return id;
