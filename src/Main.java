@@ -8,8 +8,7 @@ public class Main {
         teacher1.setId(1);
         teacher1.setFirstName("Engin");
         Teacher.objects.save(teacher1);
-
-
+        
         Lecture lecture1 = new Lecture();
         lecture1.setName("Java 101");
         lecture1.setPrice(10);
