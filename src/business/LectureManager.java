@@ -13,7 +13,7 @@ import java.util.List;
 
 public class LectureManager {
     private final List<Lecture> _lectures = new ArrayList<>();
-    private static final ILogger[] loggers = {new DatabaseLogger(), new FileLogger()};
+    private final ILogger[] loggers = {new DatabaseLogger(), new FileLogger()};
     private final ILectureDao lectureDao = new HibernateLectureDao();
 
 
@@ -22,7 +22,7 @@ public class LectureManager {
 
         for (Lecture lecture : this._lectures) { // Simüle etmek için lectures yerine _lectures kullanıldı.
             if (newLecture.getName().toLowerCase().equals(lecture.getName().toLowerCase())) {
-                for (ILogger logger : LectureManager.loggers) {
+                for (ILogger logger : this.loggers) {
                     logger.log();
                 }
                 throw new Exception("Bu kurs ismi kullanılıyor.");
@@ -30,7 +30,7 @@ public class LectureManager {
         }
 
         if (newLecture.getPrice() < 0) {
-            for (ILogger logger : LectureManager.loggers) {
+            for (ILogger logger : this.loggers) {
                 logger.log();
             }
             throw new Exception("Kurs ücreti 0'dan küçük olamaz.");
@@ -38,7 +38,7 @@ public class LectureManager {
 
         this.addToLectures(newLecture);
         this.lectureDao.save(newLecture);
-        for (ILogger logger : LectureManager.loggers) {
+        for (ILogger logger : this.loggers) {
             logger.log();
         }
     }

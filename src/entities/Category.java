@@ -7,8 +7,7 @@ public class Category {
     private int id;
     private String name;
     public static CategoryManager objects = new CategoryManager();
-
-
+    
     public int getId() {
         return id;
     }
