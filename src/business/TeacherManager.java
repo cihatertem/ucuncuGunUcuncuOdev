@@ -10,7 +10,7 @@ import logger.ILogger;
 
 
 public class TeacherManager {
-    private static final ILogger[] loggers = {new DatabaseLogger(), new FileLogger(), new EmailLogger()};
+    private final ILogger[] loggers = {new DatabaseLogger(), new FileLogger(), new EmailLogger()};
     private final ITeacherDao teacherDao = new HibernateTeacherDao();
 
     public void save(Teacher teacher) {

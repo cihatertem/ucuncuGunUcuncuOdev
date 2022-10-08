@@ -4,7 +4,6 @@ import dataAccess.ICategoryDao;
 import dataAccess.hibernate.HibernateCategoryDao;
 import entities.Category;
 import logger.DatabaseLogger;
-import logger.EmailLogger;
 import logger.ILogger;
 
 import java.util.ArrayList;
@@ -12,7 +11,7 @@ import java.util.List;
 
 public class CategoryManager {
     private final ICategoryDao categoryDao = new HibernateCategoryDao();
-    private static final ILogger[] loggers = {new DatabaseLogger(), new EmailLogger()};
+    private static final ILogger[] loggers = {new DatabaseLogger()};
     private static final List<Category> _categories = new ArrayList<>();
 
     public void save(Category entity) throws Exception {

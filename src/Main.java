@@ -8,7 +8,7 @@ public class Main {
         teacher1.setId(1);
         teacher1.setFirstName("Engin");
         Teacher.objects.save(teacher1);
-        
+
         Lecture lecture1 = new Lecture();
         lecture1.setName("Java 101");
         lecture1.setPrice(10);
@@ -16,7 +16,7 @@ public class Main {
 
         Lecture lecture2 = new Lecture();
         lecture2.setName("Java 102");
-        lecture2.setPrice(-1);
+        lecture2.setPrice(0);
         Lecture.objects.save(lecture2);
 
         Category category1 = new Category();
@@ -24,7 +24,7 @@ public class Main {
         Category.objects.save(category1);
 
         Category category2 = new Category();
-        category2.setName("Python");
+        category2.setName("JAva");
         Category.objects.save(category2);
     }
 }
